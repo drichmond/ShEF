@@ -215,7 +215,7 @@ if {$implement} {
    ########################
    if {$link} {
       ####Create in-memory prjoect and setup IP cache location
-      create_project -part [DEVICE_TYPE] -in_memory
+      create_project -part [DEVICE_TYPE] proj
       set_property IP_REPO_PATHS $cacheDir [current_project]
       puts "\nAWS FPGA: ([clock format [clock seconds] -format %T]) - Combining Shell and CL design checkpoints";
       add_files $HDK_SHELL_DIR/build/checkpoints/from_aws/SH_CL_BB_routed.dcp
@@ -310,7 +310,7 @@ if {$implement} {
    write_checkpoint -force $CL_DIR/build/checkpoints/${timestamp}.SH_CL_routed.dcp
 
    #writing encrypted dcp which can be sent to AWS
-   write_checkpoint -encrypt -force $CL_DIR/build/checkpoints/to_aws/${timestamp}.SH_CL_routed.dcp
+   write_checkpoint -force $CL_DIR/build/checkpoints/to_aws/${timestamp}.SH_CL_routed.dcp
 
    # Generate debug probes file
    write_debug_probes -force -no_partial_ltxfile -file $CL_DIR/build/checkpoints/${timestamp}.debug_probes.ltx
